@@ -17,7 +17,7 @@ loginForm.addEventListener('submit', async (e) => {
   }
 
   try {
-    startLoadingButton(3000);
+    startLoadingButton(3500);
     // Fetch users from Google Sheets using the Apps Script API
     const response = await fetch('https://script.google.com/macros/s/AKfycbw7gAoUbBCVTLnM0fQo6bUDWvPQYM2w6d8AGjoW3JW0BsjDJFypWSttjg78T_PoXvHJ/exec');
     if (!response.ok) {

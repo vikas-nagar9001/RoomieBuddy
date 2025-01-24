@@ -4,6 +4,8 @@ document.getElementById('forgotPasswordForm').addEventListener('submit', async f
 
     const email = document.getElementById('email').value; // Get email value
     try {
+    
+        startLoadingButton(3500);
         // Send the email to the Apps Script web app
         const response = await fetch('https://script.google.com/macros/s/AKfycbznYQARWuOpkjHgLyqfzugZBB_-7SgFe9pA198wc9EHIWE9qI7ZJMVSkP18JgRcPke-/exec', {
             method: 'POST',
