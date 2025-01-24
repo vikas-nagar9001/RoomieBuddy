@@ -6,17 +6,6 @@ async function createAccount() {
     const adminEmailField = document.getElementById("adminEmail");
     const privacyPolicyField = document.getElementById("privacyPolicy");
 
-    // startLoadingButton(500);
-
-    // Ensure fields exist and are not null
-    if (!nameField || !emailField || !passwordField || !adminEmailField) {
-      startLoadingButton(100);
-      console.error("One or more fields are missing in the HTML.");
-
-      showToast('Please provide all required fields.', 'warning');
-      return;
-    }
-  
     // Get input values
     const name = nameField.value;
     const email = emailField.value;
@@ -26,22 +15,20 @@ async function createAccount() {
   
     // Validate inputs
     if (!privacyPolicyAccepted) {
-      startLoadingButton(300);
       showToast('Please agree to the privacy policy.', 'warning');
       return;
     }
   
     if (!name || !email || !password || !adminEmail) {
-      startLoadingButton(300);
-      showToast('All fields are required..', 'warning');
+      showToast('All fields are required..sign', 'warning');
       return;
     }
   
     try {
-     startLoadingButton(4000);
+      startLoadingButton();
       // Send the data to Google Apps Script
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbyUNv2eyo-UVFrecOz1PcGM98D9AgP15vcEG4GBzfmEkfgfF0hgVMuaoUtF7uH2tSU/exec", // Replace with your Apps Script URL
+        "https://script.google.com/macros/s/AKfycbzHp5QZcDmTsDVNQTo0kWK-HcLsnoeRxOLF4NQ8lpxjVBrXds1AketMa2iC3r3UvON6RQ/exec", // Replace with your Apps Script URL
         {
           method: "POST",
           body: JSON.stringify({
@@ -52,10 +39,13 @@ async function createAccount() {
           }),
         }
       );
+      if (!response.ok) {
+        throw new Error('Failed to fetch users');
+      }
   
       const result = await response.json();
       if (result.success) {
-        showToast('Account create successfull', 'success');
+        showToast(result.message, 'success');
 
         setTimeout(() => {
           window.location.href = "./login.html";
@@ -69,5 +59,6 @@ async function createAccount() {
       console.error("Error during account creation:", error);
       showToast('Failed to create an account. Please try again.', 'failed');
     }
+    stopLoadingButton();
   }
   

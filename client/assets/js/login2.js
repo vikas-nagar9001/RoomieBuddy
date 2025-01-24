@@ -16,23 +16,18 @@ loginForm.addEventListener('submit', async (e) => {
 
   try {
     startLoadingButton();
-    // Send the data to Google Apps Script
-    const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbz6BporJOu4sTvjH5gNUL0qCo2uVteIiJV7mBgJb_NH6m1DTi1wki9wt8hTaf4cRPbLGQ/exec", // Replace with your Apps Script URL
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      }
-    );
-    const result = await response.json();
+    // Fetch users from Google Sheets using the Apps Script API
+    const response = await fetch('https://script.google.com/macros/s/AKfycbw7gAoUbBCVTLnM0fQo6bUDWvPQYM2w6d8AGjoW3JW0BsjDJFypWSttjg78T_PoXvHJ/exec');
     if (!response.ok) {
       throw new Error('Failed to fetch users');
     }
 
-    if (result.success) {
+    const users = await response.json(); // Assuming the response is an array of users with roles
+    // Check if there's a user with the given email and password
+    const user = users.find(u => u.email === email && u.password === password);
+
+
+    if (user) {
       // Store the user's email in sessionStorage
       sessionStorage.setItem('userEmail', user.email);
 

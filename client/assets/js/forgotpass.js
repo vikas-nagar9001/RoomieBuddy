@@ -7,7 +7,7 @@ document.getElementById('forgotPasswordForm').addEventListener('submit', async f
     
         startLoadingButton(3500);
         // Send the email to the Apps Script web app
-        const response = await fetch('https://script.google.com/macros/s/AKfycbznYQARWuOpkjHgLyqfzugZBB_-7SgFe9pA198wc9EHIWE9qI7ZJMVSkP18JgRcPke-/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzaVF08-GJeNm7rxaI1kAfNEJv7CO3E-mg3NtqAQiPjFLlwTBwYPr16cBfQfqVqOwY3RA/exec', {
             method: 'POST',
             body: JSON.stringify({ email }), // Send email data as JSON
         });
