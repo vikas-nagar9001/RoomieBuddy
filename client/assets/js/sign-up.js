@@ -28,10 +28,11 @@ async function createAccount() {
       startLoadingButton();
       // Send the data to Google Apps Script
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzHp5QZcDmTsDVNQTo0kWK-HcLsnoeRxOLF4NQ8lpxjVBrXds1AketMa2iC3r3UvON6RQ/exec", // Replace with your Apps Script URL
+        "https://script.google.com/macros/s/AKfycbx-vO44873Z67cUgLt_RtN2AzW7n142EZ1oewhVeJcAQyMOMWVXp9pTU1y62aLGM5gV0Q/exec", // Replace with your Apps Script URL
         {
           method: "POST",
           body: JSON.stringify({
+            action: 'signup',
             name,
             email,
             password,

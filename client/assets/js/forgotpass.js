@@ -4,12 +4,12 @@ document.getElementById('forgotPasswordForm').addEventListener('submit', async f
 
     const email = document.getElementById('email').value; // Get email value
     try {
-    
+
         startLoadingButton(3500);
         // Send the email to the Apps Script web app
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzaVF08-GJeNm7rxaI1kAfNEJv7CO3E-mg3NtqAQiPjFLlwTBwYPr16cBfQfqVqOwY3RA/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbx-vO44873Z67cUgLt_RtN2AzW7n142EZ1oewhVeJcAQyMOMWVXp9pTU1y62aLGM5gV0Q/exec', {
             method: 'POST',
-            body: JSON.stringify({ email }), // Send email data as JSON
+            body: JSON.stringify({ email, action: 'forgotPassword' }), // Send email data as JSON
         });
 
         const result = await response.json(); // Parse the response as JSON
