@@ -9,20 +9,22 @@ loginForm.addEventListener('submit', async (e) => {
   const password = passwordInput.value;
 
   if (!email || !password) {
+
+    startLoadingButton(500);
+
     showToast('Please provide all required fields.', 'warning');
     return;
   }
 
   try {
+    startLoadingButton(3000);
     // Fetch users from Google Sheets using the Apps Script API
     const response = await fetch('https://script.google.com/macros/s/AKfycbw7gAoUbBCVTLnM0fQo6bUDWvPQYM2w6d8AGjoW3JW0BsjDJFypWSttjg78T_PoXvHJ/exec');
-
     if (!response.ok) {
       throw new Error('Failed to fetch users');
     }
 
     const users = await response.json(); // Assuming the response is an array of users with roles
-
     // Check if there's a user with the given email and password
     const user = users.find(u => u.email === email && u.password === password);
 

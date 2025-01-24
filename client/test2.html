@@ -1,23 +1,90 @@
-<form id="forgotPasswordForm">
-    <label for="email">Enter your email:</label>
-    <input type="email" id="email" name="email" required>
-    <button type="submit">Submit</button>
-  </form>
-  
-  <script>
-    document.getElementById('forgotPasswordForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-  
-      // Send the email to the Apps Script web app
-      const response = await fetch('YOUR_WEB_APP_URL', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-  
-      const result = await response.text();
-      alert(result);
-    });
-  </script>
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>/* Ensure the button retains a fixed size */
+    #loginButton {
+        min-height: 48px;
+        min-width: 200px; /* Fixed width */
+    }
+    
+    /* Create the wave effect for each character in "Roomie" */
+    .wave-text {
+        display: inline-block;
+        font-weight: bold;
+        font-size: 1.25rem;
+        color: white;
+        letter-spacing: 2px;
+    }
+    
+    .wave-text span {
+        display: inline-block;
+        animation: wave 1.5s ease-in-out infinite;
+    }
+    
+    .wave-text span:nth-child(1) { animation-delay: 0s; }
+    .wave-text span:nth-child(2) { animation-delay: 0.1s; }
+    .wave-text span:nth-child(3) { animation-delay: 0.2s; }
+    .wave-text span:nth-child(4) { animation-delay: 0.3s; }
+    .wave-text span:nth-child(5) { animation-delay: 0.4s; }
+    .wave-text span:nth-child(6) { animation-delay: 0.5s; }
+    
+    /* Wave animation for text */
+    @keyframes wave {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    </style>
+</head>    <button type="submit" id="loginButton"
+class="relative block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+<span id="buttonText">Log in</span>
+<div id="loader" class="hidden absolute inset-0 flex items-center justify-center w-full h-full">
+  <div class="w-6 h-6 border-4 border-t-4 border-white border-solid rounded-full animate-spin"></div>
+</div>
+</button>
+<style>
+/* Add this custom CSS to ensure the button has a fixed size */
+#loginButton {
+  min-height: 30px;
+  /* Same as the default button height */
+  min-width: 60px;
+  /* Minimum width to avoid shrinking */
+}
+</style>
+
+<script>document.getElementById('loginButton').addEventListener('click', function(event) {
+// Prevent form submission
+event.preventDefault();
+
+// Get the button, text, and loader elements
+var button = event.target;
+var buttonText = document.getElementById('buttonText');
+var loader = document.getElementById('loader');
+
+// Hide the text and show the loader inside the button
+buttonText.classList.add('hidden'); // Hide the "Log in" text
+loader.classList.remove('hidden'); // Show the loader
+
+// Optionally, disable the button while loading
+button.disabled = true;
+
+// Simulate a delay (e.g., server request)
+setTimeout(function() {
+// Restore the button text and enable it after the simulated request
+buttonText.classList.remove('hidden');
+loader.classList.add('hidden'); // Hide the loader
+button.disabled = false;
+}, 3000);  // Set the duration of the loading state, in milliseconds
+});
+</script>
+</body>
+</html>
