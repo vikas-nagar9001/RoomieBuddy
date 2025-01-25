@@ -35,10 +35,8 @@ loginForm.addEventListener('submit', async (e) => {
 
     if (result.success) {
       // Store the user's email in sessionStorage
-      sessionStorage.setItem('userEmail', user.email);
+      sessionStorage.setItem('userEmail', email);
 
-      // Store the admin's email in sessionStorage (assuming it's available as `user.adminEmail`)
-      sessionStorage.setItem('userName', user.name);
 
       // alert('Login successful!');
       // Show a success toast
