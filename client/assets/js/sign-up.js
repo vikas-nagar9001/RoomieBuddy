@@ -20,7 +20,7 @@ async function createAccount() {
     }
   
     if (!name || !email || !password || !adminEmail) {
-      showToast('All fields are required..sign', 'warning');
+      showToast('All fields are required.', 'warning');
       return;
     }
   
@@ -28,7 +28,7 @@ async function createAccount() {
       startLoadingButton();
       // Send the data to Google Apps Script
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbx-vO44873Z67cUgLt_RtN2AzW7n142EZ1oewhVeJcAQyMOMWVXp9pTU1y62aLGM5gV0Q/exec", // Replace with your Apps Script URL
+        "https://script.google.com/macros/s/AKfycbxoq9etzmKkLsq62gffcwSHSSx58klcXOZF_R35e-O6fzqlqt-6gJcK0gs5IG6ooN8e/exec", // Replace with your Apps Script URL
         {
           method: "POST",
           body: JSON.stringify({

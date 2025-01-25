@@ -14,11 +14,11 @@ function checkSession() {
   
   
   // Function to log out
-  function logout() {
+  function logout(path='pages/login.html') {
     // Clear the session and redirect to login page
     sessionStorage.clear();
     alert('You have been logged out.');
-    window.location.href = 'pages/login.html';
+    window.location.href = path;
   }
   
 
