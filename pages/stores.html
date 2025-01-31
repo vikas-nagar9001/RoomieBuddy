@@ -1,0 +1,74 @@
+  <!-- Add User Button -->
+  <button
+  class="mb-4 flex items-center px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+    <path
+      d="M19 11h-6V5a1 1 0 10-2 0v6H5a1 1 0 100 2h6v6a1 1 0 102 0v-6h6a1 1 0 100-2z" />
+  </svg>
+  Add User
+</button>
+
+
+<script>
+const params = new URLSearchParams({
+  adminEmail: "admin@gmail.com",
+});
+
+const response = await fetch(
+  `https://script.google.com/macros/s/AKfycbxoq9etzmKkLsq62gffcwSHSSx58klcXOZF_R35e-O6fzqlqt-6gJcK0gs5IG6ooN8e/exec?${params}`, // Append the query string
+  {
+    method: "GET", // GET method for sending URL parameters
+  }
+);
+</script>
+
+
+
+
+
+
+
+<!--table  toggle -->
+<td class="px-4 py-3 text-xs">
+  <!-- Toggle Switch -->
+  <div class="flex items-center">
+    <div class="flex bg-purple-300 rounded-full p-0.5">
+      <button id="admin-toggle"
+        class="toggle-btn px-3 py-1 text-xs font-semibold text-white bg-purple-600 rounded-full transition-all duration-300 focus:outline-none"
+        onclick="changeRole('hans.burger@example.com', 'Admin')">
+        Admin
+      </button>
+      <button id="user-toggle"
+        class="toggle-btn px-3 py-1 text-xs font-semibold text-purple-700 bg-purple-300 rounded-full transition-all duration-300 focus:outline-none"
+        onclick="changeRole('hans.burger@example.com', 'User')">
+        User
+      </button>
+    </div>
+  </div>
+
+</td>
+
+<script>//Toggle  admin or user
+
+  const adminToggle = document.getElementById('admin-toggle');
+  const userToggle = document.getElementById('user-toggle');
+  
+  adminToggle.addEventListener('click', () => {
+    adminToggle.classList.add('bg-purple-600', 'text-white');
+    adminToggle.classList.remove('bg-purple-300', 'text-purple-700');
+  
+    userToggle.classList.add('bg-purple-300', 'text-purple-700');
+    userToggle.classList.remove('bg-purple-600', 'text-white');
+  });
+  
+  userToggle.addEventListener('click', () => {
+    userToggle.classList.add('bg-purple-600', 'text-white');
+    userToggle.classList.remove('bg-purple-300', 'text-purple-700');
+  
+    adminToggle.classList.add('bg-purple-300', 'text-purple-700');
+    adminToggle.classList.remove('bg-purple-600', 'text-white');
+  });
+  </script>
+
+
+<!-- toogle end  -->

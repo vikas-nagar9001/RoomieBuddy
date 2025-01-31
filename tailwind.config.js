@@ -5,7 +5,7 @@ const Color = require('color')
 module.exports = {
   purge: ['public/**/*.html'],
   theme: {
-    themeVariants: ['dark'],
+    darkMode: 'class',
     customForms: (theme) => ({
       default: {
         'input, textarea': {

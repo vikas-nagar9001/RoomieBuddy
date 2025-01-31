@@ -6,7 +6,7 @@ function checkSession() {
     const adminEmail = sessionStorage.getItem('adminEmail');
   
     // If no session exists, redirect to login page
-    if (!userEmail && !adminEmail) {
+    if (!userEmail || !adminEmail) {
      // alert('You must log in first.');
       window.location.href = 'pages/login.html'; // Redirect to the login page
     }
@@ -18,7 +18,7 @@ function checkSession() {
     // Clear the session and redirect to login page
     sessionStorage.clear();
     alert('You have been logged out.');
-    window.location.href = path;
+    window.location.href ='pages/login.html';
   }
   
 
